@@ -1,0 +1,31 @@
+//: name: t3.txt							
+//: description: Fully corrected multiplicity distributions. Note that the value of P0 in the 1 to 4 pseudorapidity region is not measured but taken from the reweighted DJANGO 6.0 Monte Carlo generator.							
+											
+//: keyword reactions: E+ P --> E+ CHGD-HADRONS X							
+//: keyword observables: MULT							
+//: keyword cmenergies: 0.0							
+//: ETARAP(REF=CM)	1 TO 4						
+//: M(P=1_2) [GEV]	80 TO 115						
+//: Q**2 [GEV**2]	10 TO 1000						
+//: RE	E+ P --> E+ CHGD-HADRONS X						
+//: SQRT(S) [GeV]	0.0			
+// N      PROB      ERX     ERY
+// 0.00   0.00780    0.00   0.01662
+ 1.00   0.02730    0.00   0.00957
+ 2.00   0.05730    0.00   0.01477
+ 3.00   0.09550    0.00   0.01488
+ 4.00   0.11110    0.00   0.01252
+ 5.00   0.12760    0.00   0.02247
+ 6.00   0.12190    0.00   0.01319
+ 7.00   0.11170    0.00   0.01029
+ 8.00   0.09220    0.00   0.00571
+ 9.00   0.07720    0.00   0.01409
+10.00   0.05690    0.00   0.01332
+11.00   0.03950    0.00   0.01024
+12.00   0.02760    0.00   0.00987
+13.00   0.01790    0.00   0.00820
+14.00   0.01220    0.00   0.00638
+15.00   0.00670    0.00   0.00691
+16.00   0.00400    0.00   0.00444
+17.00   0.00240    0.00   0.00348
+18.00   0.00130    0.00   0.00206

@@ -1,0 +1,34 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Sat Mar  4 11:41:38 2023
+
+@author: soumya
+"""
+
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.optimize import curve_fit
+from scipy.special import gamma
+
+
+data = np.genfromtxt('CERN_ISR_sigma_62_2.txt')
+
+sigma = data[2:,1]
+d_sigma = data[2:,2]
+
+n = data[2:,0]
+P_n = sigma/sum(sigma)
+err_Pn = d_sigma/sum(sigma)
+
+with open('CERN_ISR_Pn_n_62_2.txt','w') as file:
+    for i in range(len(P_n)):
+        file.write(str(n[i]))
+        file.write('    ')
+        file.write(str(P_n[i]))
+        file.write('    ')
+        file.write(str(err_Pn[i]))
+        file.write('\n')
+        
+file.close()
+
