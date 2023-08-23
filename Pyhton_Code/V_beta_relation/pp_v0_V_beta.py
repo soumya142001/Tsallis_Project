@@ -31,7 +31,7 @@ m=139.5
 V1=30
 V2=150
 V = np.linspace(30,150,1200);
-v0 = np.linspace(0.1,0.5,100);
+v0 = np.linspace(0.1,0.5,10);
 Nbar=np.array([10.54,12.08,12.76,13.63])
 K = np.array([9.24,8.6,7.71,7.64])
 
@@ -107,13 +107,43 @@ for j in range(len(Nbar)):
             #print(n)
 Vol,exc_vol = np.meshgrid(V,v0)
 
+fig, ax = plt.subplots(2,2,figsize=(10,10),subplot_kw=dict(projection='3d'))
+
 cmap = 'gist_heat'
 
-contour = plt.pcolormesh(Vol/(a**3),exc_vol/(a**3),np.transpose(temp[0][:][:]),cmap=cmap)
-cbar = plt.colorbar(contour);
-cbar.set_label(r' $\beta^{-1}$ ($MeV$)',fontsize=30)
-plt.xlabel('V(fm$^3$)',fontsize=30)
-plt.ylabel('$v_0$(fm$^3$)',fontsize=30)
-plt.xticks(np.arange(30,151,20),fontweight='bold',fontsize=20)
-plt.yticks(np.arange(0.1,0.51,0.05),fontweight='bold',fontsize=20)
+
+surf0 = ax[0,0].plot_surface(Vol/(a**3),exc_vol/(a**3),np.transpose(temp[0][:][:]),cmap=cmap,antialiased=False)
+surf1 = ax[0,1].plot_surface(Vol/(a**3),exc_vol/(a**3),np.transpose(temp[1][:][:]),cmap=cmap,antialiased=False)
+surf2 = ax[1,0].plot_surface(Vol/(a**3),exc_vol/(a**3),np.transpose(temp[2][:][:]),cmap=cmap,antialiased=False)
+surf3 = ax[1,1].plot_surface(Vol/(a**3),exc_vol/(a**3),np.transpose(temp[3][:][:]),cmap=cmap,antialiased=False)
+#cbar0 = fig.colorbar(surf0);
+#cbar1 = fig.colorbar(surf1);
+#cbar2 = fig.colorbar(surf2);
+#cbar3 = fig.colorbar(surf3);
+#cbar.set_label(r' $\beta^{-1}$ ($MeV$)',fontsize=20)
+ax[0,0].set_xlabel('V(fm$^3$)',fontsize=20,labelpad=10)
+ax[0,0].set_ylabel('$v_0$(fm$^3$)',fontsize=20,labelpad=10)
+ax[0,0].set_zlabel(r' $\beta^{-1}$ ($MeV$)',fontsize=20,labelpad=10)
+ax[0,1].set_xlabel('V(fm$^3$)',fontsize=20,labelpad=10)
+ax[0,1].set_ylabel('$v_0$(fm$^3$)',fontsize=20,labelpad=10)
+ax[0,1].set_zlabel(r' $\beta^{-1}$ ($MeV$)',fontsize=20,labelpad=10)
+ax[1,0].set_xlabel('V(fm$^3$)',fontsize=20,labelpad=10)
+ax[1,0].set_ylabel('$v_0$(fm$^3$)',fontsize=20,labelpad=10)
+ax[1,0].set_zlabel(r' $\beta^{-1}$ ($MeV$)',fontsize=20,labelpad=10)
+ax[1,1].set_xlabel('V(fm$^3$)',fontsize=20,labelpad=10)
+ax[1,1].set_ylabel('$v_0$(fm$^3$)',fontsize=20,labelpad=10)
+ax[1,1].set_zlabel(r' $\beta^{-1}$ ($MeV$)',fontsize=20,labelpad=10)
+
 plt.show()
+#plt.xticks(np.arange(30,151,20),fontweight='bold',fontsize=20)
+#plt.yticks(np.arange(0.1,0.51,0.05),fontweight='bold',fontsize=20)
+
+#Will be used if needed
+#contour = plt.colormesh(Vol/(a**3),exc_vol/(a**3),np.transpose(temp[0][:][:]),cmap=cmap,antialiased=False)
+#cbar = plt.colorbar(contour);
+#cbar.set_label(r' $\beta^{-1}$ ($MeV$)',fontsize=30)
+#plt.xlabel('V(fm$^3$)',fontsize=30)
+#plt.ylabel('$v_0$(fm$^3$)',fontsize=30)
+#plt.xticks(np.arange(30,151,20),fontweight='bold',fontsize=20)
+#plt.yticks(np.arange(0.1,0.51,0.05),fontweight='bold',fontsize=20)
+#plt.show()

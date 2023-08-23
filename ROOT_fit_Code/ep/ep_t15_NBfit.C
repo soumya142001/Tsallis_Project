@@ -96,17 +96,17 @@ void ep_t15_NBfit()
    cout<<"Normalisation : "<<func->GetParameter(2)<<" +- "<<func->GetParError(2)<<endl;
    //cout<<"Degrees of freedom: "<<func->GetNdf()<<endl;
    
-   TLegend *legend = new TLegend(0.6,0.4,0.8,0.7,NULL,"NDC");
+   TLegend *legend = new TLegend(0.6,0.6,0.8,0.8,NULL,"NDC");
    legend->SetTextSize(0.05);
    legend->SetFillStyle(10);
    legend->SetFillColor(10);
    legend->SetBorderSize(1);
    legend->SetLineColor(kWhite);	
-   legend->AddEntry(func,"NB fitting function","l");
-   legend->AddEntry(gr,"ep Data","ep");
+   legend->AddEntry(func,"NBD","l");
+   legend->AddEntry(gr,"Data","ep");
    legend->Draw();
    
-   gStyle->SetOptFit(1111);
+   //gStyle->SetOptFit(1111);
    
    c1->SaveAs("/home/soumya/Tsallis_Data/Plots/NB_fit_Plots/ep_t15_NBfit.pdf");
    

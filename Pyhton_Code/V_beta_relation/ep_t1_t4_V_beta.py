@@ -105,10 +105,10 @@ for j in range(len(Nbar)):
         beta,q =  fsolve(Tsallis_vdwaal,(0.008,0.02))
         temp[j][i] = beta**(-1)
 
-plt.plot(V/(a**3),temp[0][:],label='$<Q^2>=13.5$ GeV',linewidth=4)
-plt.plot(V/(a**3),temp[1][:],label='$<Q^2>=27.6$ GeV',linewidth=4)
-plt.plot(V/(a**3),temp[2][:],label='$<Q^2>=55.0$ GeV',linewidth=4)
-plt.plot(V/(a**3),temp[3][:],label='$<Q^2>=385.3$ GeV',linewidth=4)
+plt.plot(V/(a**3),temp[0][:],label=r'$\langle Q^2 \rangle=13.5$ GeV$^2$',linewidth=4)
+plt.plot(V/(a**3),temp[1][:],label=r'$\langle Q^2 \rangle=27.6$ GeV$^2$',linewidth=4)
+plt.plot(V/(a**3),temp[2][:],label=r'$\langle Q^2 \rangle=55.0$ GeV$^2$',linewidth=4)
+plt.plot(V/(a**3),temp[3][:],label=r'$\langle Q^2 \rangle=385.3$ GeV$^2$',linewidth=4)
 
 plt.xlabel('V (fm$^3$)',fontsize=30)
 plt.ylabel(r' $\beta^{-1}$  (MeV)',fontsize=30)

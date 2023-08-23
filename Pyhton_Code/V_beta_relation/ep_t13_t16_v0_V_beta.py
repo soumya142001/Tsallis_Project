@@ -6,6 +6,7 @@ Created on Fri Mar 10 17:24:14 2023
 @author: soumya
 """
 
+import sys
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy.optimize import fsolve
@@ -15,7 +16,7 @@ from sympy import *
 #N_avg = 2.4544
 #k = 3.283
 a=5.07614*10**(-3)
-v0=0.368*a**3
+#v0=0.368*a**3
 #V=40.1*a**3
 g=1
 g_pi=3
@@ -28,18 +29,18 @@ m_rho=770
 m_omega=782
 m=139.5
 
-gamma_mono = 1.66
-gamma_di = 1.4
-#q1=(1/k)+(2*v0)/V
-#q2=(2*v0)/V
-
 V1=30
 V2=150
-V = np.linspace(V1,V2,1200);
+V = np.linspace(30,150,1200);
+v0 = np.linspace(0.1,0.5,10);
+
 Nbar=np.array([2.65,5.32,7.63,8.78])
 K = np.array([3.13,3.96,6.70,12.73])
 
-V= V*(a**3)
+V = V*(a**3)
+v0 = v0*(a**3)
+
+
 
 def phi(x):
     t = (g/(2*x*np.pi**2))*(m**2)*kn(2,m*x)
@@ -88,31 +89,35 @@ def Ideal_Temp(V,gamma,k):
 
     
 
-temp = np.zeros((len(Nbar),len(V)))
+temp = np.zeros((len(Nbar),len(V),len(v0)))
+Q = np.zeros((len(Nbar),len(V),len(v0)))
 
+index = int(sys.argv[1])
 
 for j in range(len(Nbar)):
     N_avg = Nbar[j]
     k = K[j]
     for i in range(len(V)):
-        def Tsallis_vdwaal(vars):
-            beta,q = vars
-            eq1 = n0(beta,V[i])+q*n0(beta,V[i])*xi(beta)*(n0(beta,V[i])*xi(beta)-1)-((2*v0)/V[i])*(n0(beta,V[i]))**2-N_avg
-            eq2 = q*(xi(beta))**2-2*(v0/V[i])-1/k
+        for n in range(len(v0)):
+            def Tsallis_vdwaal(vars):
+                beta,q = vars
+                eq1 = n0(beta,V[i])+q*n0(beta,V[i])*xi(beta)*(n0(beta,V[i])*xi(beta)-1)-((2*v0[n])/V[i])*(n0(beta,V[i]))**2-N_avg
+                eq2 = q*(xi(beta))**2-2*((v0[n])/(V[i]))-1/k
         
-            return [eq1,eq2]
+                return [eq1,eq2]
     
-        beta,q =  fsolve(Tsallis_vdwaal,(0.008,0.02))
-        temp[j][i] = beta**(-1)
+            beta,q =  fsolve(Tsallis_vdwaal,(0.008,0.02))
+            temp[j][i][n] = beta**(-1)
+            Q[j][i][n] = q
+            #print(n)
+Vol,exc_vol = np.meshgrid(V,v0)
 
-plt.plot(V/(a**3),temp[0][:],label=r'$\langle Q^2 \rangle=13.5$ GeV$^2$',linewidth=4)
-plt.plot(V/(a**3),temp[1][:],label=r'$\langle Q^2 \rangle=27.6$ GeV$^2$',linewidth=4)
-plt.plot(V/(a**3),temp[2][:],label=r'$\langle Q^2 \rangle=54.9$ GeV$^2$',linewidth=4)
-plt.plot(V/(a**3),temp[3][:],label=r'$\langle Q^2 \rangle=374.2$ GeV$^2$',linewidth=4)
-
-plt.xlabel('V (fm$^3$)',fontsize=30)
-plt.ylabel(r' $\beta^{-1}$  (MeV)',fontsize=30)
-plt.xticks(range(20,161,20),fontweight='bold',fontsize=20)
-plt.yticks(range(70,191,15),fontweight='bold',fontsize=20)
-plt.legend(frameon=False,fontsize=20)
+cmap='gist_heat'
+contour = plt.pcolormesh(Vol/(a**3),exc_vol/(a**3),np.transpose(temp[index][:][:]),cmap=cmap)
+cbar=plt.colorbar(contour);
+cbar.set_label(r' $\beta^{-1}$ ($MeV$)',fontsize=30,labelpad=20)
+plt.xlabel('V(fm$^3$)',fontsize=30)
+plt.ylabel('$v_0$(fm$^3$)',fontsize=30,labelpad=20)
+plt.xticks(np.arange(30,151,20),fontweight='bold',fontsize=20)
+plt.yticks(np.arange(0.1,0.51,0.05),fontweight='bold',fontsize=20)
 plt.show()

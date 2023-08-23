@@ -73,6 +73,7 @@ void ISR_44_5_NBfit()
    gr->GetYaxis()->CenterTitle(true);
    gr->GetXaxis()->SetTitleSize(0.04);
    gr->GetYaxis()->SetTitleSize(0.04);
+   gr->GetYaxis()->SetTitleOffset(1.2);
    gr->Draw("AP");
    gr->GetYaxis()->SetRangeUser(-0.02,0.18);
 
@@ -94,19 +95,19 @@ void ISR_44_5_NBfit()
    cout<<"Normalisation : "<<func->GetParameter(2)<<" +- "<<func->GetParError(2)<<endl;
    //cout<<"Degrees of freedom: "<<func->GetNdf()<<endl;
    
-   TLegend *legend = new TLegend(0.6,0.4,0.8,0.7,NULL,"NDC");
+   TLegend *legend = new TLegend(0.6,0.6,0.8,0.8,NULL,"NDC");
    legend->SetTextSize(0.05);
    legend->SetFillStyle(10);
    legend->SetFillColor(10);
    legend->SetBorderSize(1);
    legend->SetLineColor(kWhite);	
-   legend->AddEntry(func,"NB fitting function","l");
-   legend->AddEntry(gr,"CERN ISR Data","ep");
+   legend->AddEntry(func,"NBD","l");
+   legend->AddEntry(gr,"Data","ep");
    legend->Draw();
    
-   gStyle->SetOptFit(1111);
+   //gStyle->SetOptFit(1111);
    
-   c1->SaveAs("/home/soumya/Tsallis_Data/ROOT_fit_Code/plots/NB_fit_Plots/ISR_44_5_NBfit.pdf");
+   c1->SaveAs("/home/soumya/Tsallis_Data/Plots/NB_fit_Plots/ISR_44_5_NBfit.pdf");
    
 }
 

@@ -106,13 +106,13 @@ for j in range(len(Nbar)):
         temp[j][i] = beta**(-1)
         Q[j][i] = q
 
-plt.plot(V/(a**3),Q[0][:],label='$<Q^2>=13.5$ GeV',linewidth=4)
-plt.plot(V/(a**3),Q[1][:],label='$<Q^2>=27.6$ GeV',linewidth=4)
-plt.plot(V/(a**3),Q[2][:],label='$<Q^2>=54.9$ GeV',linewidth=4)
-plt.plot(V/(a**3),Q[3][:],label='$<Q^2>=374.2$ GeV',linewidth=4)
+plt.plot(V/(a**3),Q[0][:],label=r'$\langle Q^2 \rangle=13.5$ GeV$^2$',linewidth=4)
+plt.plot(V/(a**3),Q[1][:],label=r'$\langle Q^2 \rangle=27.6$ GeV$^2$',linewidth=4)
+plt.plot(V/(a**3),Q[2][:],label=r'$\langle Q^2 \rangle=54.9$ GeV$^2$',linewidth=4)
+plt.plot(V/(a**3),Q[3][:],label=r'$\langle Q^2 \rangle=374.2$ GeV$^2$',linewidth=4)
 
-plt.xlabel('V (fm$^3$)',fontsize=30)
-plt.ylabel('q-1',fontsize=30)
+plt.xlabel('V (fm$^3$)',fontsize=40)
+plt.ylabel('q-1',fontsize=40)
 plt.xticks(np.arange(20,161,20),fontweight='bold',fontsize=20)
 plt.yticks(np.arange(0,0.051,0.005),fontweight='bold',fontsize=20)
 plt.legend(frameon=False,fontsize=20)

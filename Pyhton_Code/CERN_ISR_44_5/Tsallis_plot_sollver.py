@@ -106,7 +106,7 @@ beta = np.divide(np.ones(len(beta_inv)),beta_inv)
 
 #print(beta)
 
-plt.plot(beta,xi_eq(beta),label=r'$\xi$'+r'($\beta$)'+' eq(33)',linewidth=4)
+plt.plot(beta,xi_eq(beta),label=r'$\xi$'+r'($\beta$)'+' eq(33)',linewidth=4,color='r')
 plt.plot(beta,xi_diff_multi(beta),label=r'$\xi$'+r'($\beta$)'+' eq(41)',linewidth=4)
 #plt.plot(beta,xi_diff(beta),label="$xi$ from differentiation")
 #plt.plot(beta,q_1_diff(beta),label='q-1 as a function of beta from differentiation')

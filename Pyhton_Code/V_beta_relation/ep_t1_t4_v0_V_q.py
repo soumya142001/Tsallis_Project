@@ -5,7 +5,7 @@ Created on Fri Mar 10 17:24:14 2023
 
 @author: soumya
 """
-
+import sys
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy.optimize import fsolve
@@ -91,6 +91,8 @@ def Ideal_Temp(V,gamma,k):
 temp = np.zeros((len(Nbar),len(V),len(v0)))
 Q = np.zeros((len(Nbar),len(V),len(v0)))
 
+index = int(sys.argv[1])
+
 for j in range(len(Nbar)):
     N_avg = Nbar[j]
     k = K[j]
@@ -110,11 +112,11 @@ for j in range(len(Nbar)):
 Vol,exc_vol = np.meshgrid(V,v0)
 
 cmap='gist_heat'
-contour = plt.contourf(Vol/(a**3),exc_vol/(a**3),np.transpose(Q[0][:][:]),cmap=cmap)
+contour = plt.pcolormesh(Vol/(a**3),exc_vol/(a**3),np.transpose(Q[index][:][:]),cmap=cmap)
 cbar=plt.colorbar(contour);
-cbar.set_label('q-1',fontsize=30)
-plt.xlabel('V(fm$^3$)',fontsize=30)
-plt.ylabel('$v_0$(fm$^3$)',fontsize=30)
+cbar.set_label('q-1',fontsize=30,labelpad=20)
+plt.xlabel('V(fm$^3$)',fontsize=30,labelpad=20)
+plt.ylabel('$v_0$(fm$^3$)',fontsize=30,labelpad=20)
 plt.xticks(np.arange(30,151,20),fontweight='bold',fontsize=20)
 plt.yticks(np.arange(0.1,0.51,0.05),fontweight='bold',fontsize=20)
 plt.show()
